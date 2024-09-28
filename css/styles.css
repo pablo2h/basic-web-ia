@@ -1,0 +1,190 @@
+body {
+    margin: 0;
+    overflow: auto;
+    background-color: #000;
+    font-family: Arial, sans-serif;
+}
+
+#connectionCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+#modulesContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: transparent; /* Asegura que el contenedor no tenga fondo opaco */
+    z-index: 2; /* Por encima de los canvas */
+}
+
+.module {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px 0;
+    padding: 20px;
+    background: rgba(255, 255, 255, 1); /* Fondo blanco opaco */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.module.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.module img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.module h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #00FFFF; /* Texto en cian para contraste */
+}
+
+.module p {
+    font-size: 16px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+/* Estilos para el botón del chatbot */
+.chat-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #FF0000; /* Rojo brillante */
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    color: #FFFFFF;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(255, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+    z-index: 3;
+}
+
+.chat-button:hover {
+    background-color: #CC0000; /* Rojo oscuro en hover */
+}
+
+/* Conexiones con color azul */
+canvas#connectionCanvas {
+    background: transparent;
+}
+
+/* Estilos Responsivos */
+@media (max-width: 600px) {
+    .module {
+        width: 95%;
+    }
+
+    .module h3 {
+        font-size: 20px;
+    }
+
+    .module p {
+        font-size: 14px;
+    }
+
+    .chat-button {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+}
+
+.module::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #0000FF; /* Línea azul */
+    margin-top: 15px;
+}
+
+/* Barra de Navegación */
+#navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 4; /* Por encima de los módulos y canvas */
+}
+
+#navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+#navbar ul li {
+    margin: 0 15px;
+}
+
+#navbar ul li a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+#navbar ul li a:hover {
+    color: #00FFFF; /* Cambio de color al pasar el cursor */
+}
+
+/* Posicionamiento del Canvas de Estrellas */
+canvas#starsCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0; /* Detrás de todo */
+    pointer-events: none; /* No interferir con la interacción */
+}
+
+/* Posicionamiento del Canvas de Conexiones */
+canvas#connectionCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Por encima de las estrellas pero por debajo de los módulos */
+    pointer-events: none;
+}
+
+/* Contenedor de Módulos */
+#modulesContainer {
+    position: relative;
+    z-index: 2; /* Por encima de los canvas */
+}
+
+.module:hover {
+    box-shadow: 0 0 20px 5px rgba(0, 255, 255, 0.6); /* Resplandor cyan */
+    transform: scale(1.02); /* Ligero aumento de tamaño */
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Efecto de Glow al Pasar el Cursor */
+.module {
+    /* ... estilos existentes ... */
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    cursor: pointer; /* Indica que es interactivo */
+}
+
+.module:hover {
+    box-shadow: 0 0 20px 5px rgba(0, 255, 255, 0.6); /* Resplandor cyan */
+    transform: scale(1.02); /* Ligero aumento de tamaño */
+}
